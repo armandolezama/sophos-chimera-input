@@ -9,9 +9,9 @@ export class SophosChimeraInput extends LitElement {
     */
   constructor() {
     super();
-    this.styleOfInput = '';
+    this.styleOfInput = 'rounded-mobile-input';
     this.value = '';
-    this.isRequired = true;
+    this.isRequired = false;
     this.label = 'Put your name here';
     this.pattern = '';
     this._inputStatus = '';
@@ -25,7 +25,6 @@ export class SophosChimeraInput extends LitElement {
       styleOfInput : { type : String},
       value : { type : String},
       isRequired : { type : Boolean},
-      styleOfInput : { type : String},
       label : { type : String},
       pattern : {type : String},
       _inputStatus : { type : String}
@@ -53,17 +52,32 @@ export class SophosChimeraInput extends LitElement {
   /*Input status property sets style rule for valid or invalid */
   render() {
     return html`
-    <div id="main-container">
-      <div id="input-container">
-        <input 
-        id="input-tag"
-        status=${this._inputStatus}
-        ?required="${this.isRequired}"
-        @input="${this._getInputValue}"
-        value="${this.value}">
-        <label id="input-label">${this.label}</label>
+      <div id="main-container">
+        <div 
+        id="input-container"
+        input-style="${this.styleOfInput}">
+        ${this.styleOfInput === 'simple-bar-input' ? html`
+          <input 
+          id="input-tag"
+          status="${this._inputStatus}"
+          value="${this.value}"
+          ?required="${this.isRequired}"
+          @input="${this._getInputValue}">
+          <span id="span-highlight"></span>
+          <span id="span-bar"></span>
+          <label id="input-label">${this.label}</label>
+        ` : html``}
+        ${this.styleOfInput === 'rounded-mobile-input' ? html`
+          <input 
+          id="input-tag"
+          status=${this._inputStatus}
+          ?required="${this.isRequired}"
+          @input="${this._getInputValue}"
+          value="${this.value}">
+          <label id="input-label">${this.label}</label>
+        ` : html``}
+        </div>
       </div>
-    </div>
     `;
   };
 };
