@@ -1,167 +1,183 @@
 import { css } from 'lit-element';
 
 export default css`
-  #main-container{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 200px;
+  :host {
+    --rounded-mobile-input-color: gray;
+    --simple-bar-input-color: green;
+    --simple-bar-input-bar-color: aqua;
   }
-  #input-label, #input-tag, #input-tag:required {
-  -moz-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
-  -o-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
-  -webkit-transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
-  transition: all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5);
+
+  #main-container {
+    display: var(--sophos-chimera-input-main-container-display, flex);
+    justify-content: var(--sophos-chimera-input-main-container-justify-content, space-evenly);
+    align-items: var(--sophos-chimera-input-main-container-align-items, center);
+    height: var(--sophos-chimera-input-main-container-height, 200px);
   }
-  #input-container[input-style="rounded-mobile-input"] {
-    position: relative;
-    padding: 10px 0;
+
+  #input-label[input-style="rounded-mobile-input"] {
+  -moz-transition: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-moz-transition, all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5));
+  -o-transition: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-o-transition, all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5));
+  -webkit-transition: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-webkit-transition, all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5));
+  transition: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-transition, all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5));
+  transform-origin: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-transform-origin, left center);
+  color: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-color, var(--rounded-mobile-input-color));
+  letter-spacing: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-letter-spacing, 0.01em);
+  font-size: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-font-size, 1rem);
+  box-sizing: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-box-sizing, border-box);
+  padding: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-padding, 10px 15px);
+  position: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-position, absolute);
+  margin-top: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-margin-top, -40px);
+  pointer-events: var(--sophos-chimera-input-input-label-input-style-rounded-mobile-input-pointer-events, none);
   }
   
-  #input-container[input-style="rounded-mobile-input"] #input-label {
-    transform-origin: left center;
-    color: #ff4a56;
-    font-weight: 100;
-    letter-spacing: 0.01em;
-    font-size: 17px;
-    box-sizing: border-box;
-    padding: 10px 15px;
-    display: block;
-    position: absolute;
-    margin-top: -40px;
-    z-index: 2;
-    pointer-events: none;
+  #input-container[input-style="rounded-mobile-input"] #input-tag {
+  -moz-transition: var(--sophos-chimera-input-input-tag-input-style-rounded-mobile-input-moz-transition, all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5));
+  -o-transition: var(--sophos-chimera-input-input-tag-input-style-rounded-mobile-input-o-transition, all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5));
+  -webkit-transition: var(--sophos-chimera-input-input-tag-input-style-rounded-mobile-input-webkit-transition, all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5));
+  transition: var(--sophos-chimera-input-input-tag-input-style-rounded-mobile-input-transition, all 0.25s cubic-bezier(0.53, 0.01, 0.35, 1.5));
+  background-color: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-background-color, none);
+  border-color: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-border-color, var(--rounded-mobile-input-color));
+  border-style: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-border-style, solid);
+  border-width: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-border-width, 1px);
+  font-size: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-font-size, 1rem);
+  width: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-width, 100%);
+  display: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-display, block);
+  box-sizing: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-box-sizing, border-box);
+  padding: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-padding, 10px 15px);
+  border-radius: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-border-radius, 60px);
+  color: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-color, var(--rounded-mobile-input-color));
+  letter-spacing: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-letter-spacing, 0.01em);
+  position: var(--sophos-chimera-input-tag-input-style-rounded-mobile-input-position, relative);
   }
-  #input-container[input-style="rounded-mobile-input"] #input-tag, 
-  #input-container[input-style="rounded-mobile-input"] #input-tag:required {
-    appearance: none;
-    background-color: none;
-    border: 1px solid #ff4a56;
-    line-height: 0;
-    font-size: 17px;
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
-    padding: 10px 15px;
-    border-radius: 60px;
-    color: #ff4a56;
-    font-weight: 100;
-    letter-spacing: 0.01em;
-    position: relative;
-    z-index: 1;
-  }
+  
   #input-container[input-style="rounded-mobile-input"] #input-tag:focus {
-    outline: none;
-    background: #ff4a56;
-    color: white;
-    margin-top: 30px;
+    outline: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-focus-outline, none);
+    background: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-focus-background, var(--rounded-mobile-input-color));
+    color: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-focus-color, white);
   }
-  #input-container[input-style="rounded-mobile-input"] #input-tag[status="valid"] {
-    margin-top: 30px;
-  }
+  
   #input-container[input-style="rounded-mobile-input"] #input-tag:focus ~ label {
-    -moz-transform: translate(0, -35px);
-    -ms-transform: translate(0, -35px);
-    -webkit-transform: translate(0, -35px);
-    transform: translate(0, -35px);
+    -moz-transform: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-focus-moz-transform, translate(0, -35px));
+    -ms-transform: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-focus-ms-transform, translate(0, -35px));
+    -webkit-transform: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-focus-webkit-transform, translate(0, -35px));
+    transform: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-focus-transform, translate(0, -35px));
   }
   #input-container[input-style="rounded-mobile-input"] #input-tag[status="valid"] ~ label {
-    -moz-transform: translate(5px, -35px);
-    -ms-transform: translate(5px, -35px);
-    -webkit-transform: translate(5px, -35px);
-    transform: translate(5px, -35px);
+    -moz-transform: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-status-valid-label-moz-transform, translate(5px, -35px));
+    -ms-transform: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-status-valid-label-ms-transform, translate(5px, -35px));
+    -webkit-transform: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-status-valid-label-webkit-transform, translate(5px, -35px));
+    transform: var(--sophos-chimera-input-input-container-input-style-rounded-mobile-input-input-tag-status-valid-label-transform, translate(5px, -35px));
   }
 
 /* Styles for simple bar input */
   #input-container[input-style="simple-bar-input"] { 
-    position:relative; 
-    margin-bottom:45px; 
+    position: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-position, relative);
+    margin-bottom: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-margin-bottom, 45px);
   }
 
   #input-container[input-style="simple-bar-input"] #input-tag {
-    font-size:18px;
-    padding:10px 10px 10px 5px;
-    display:block;
-    width:300px;
-    border:none;
-    border-bottom:1px solid #757575;
+    font-size: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-font-size, 18px);
+    padding: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-padding, 10px 10px 10px 5px);
+    display: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-display, block);
+    width: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-width, 300px);
+    border: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-border, none);
+    color: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-color, var(--simple-bar-input-color));
+    border-bottom-width: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-border-bottom-width, 1px);
+    border-bottom-style: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-border-bottom-style, solid);
+    border-bottom-color: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-border-bottom-color, var(--simple-bar-input-color));
   }
-  #input-container[input-style="simple-bar-input"] #input-tag:focus { outline:none; }
+  #input-container[input-style="simple-bar-input"] #input-tag:focus { outline: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-focus-outline, none);}
 
-  #input-container[input-style="simple-bar-input"] #input-label 				 {
-    color:#999; 
-    font-size:18px;
-    font-weight:normal;
-    position:absolute;
-    pointer-events:none;
-    left:5px;
-    top:10px;
-    transition:0.2s ease all; 
-    -moz-transition:0.2s ease all; 
-    -webkit-transition:0.2s ease all;
+  #input-container[input-style="simple-bar-input"] #input-label {
+    color: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-color ,var(--simple-bar-input-color));
+    font-size: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-font-size, 18px);
+    position: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-position, absolute);
+    pointer-events: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-pointer-events, none);
+    left: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-left, 5px);
+    top: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-top, 10px);
+    transition: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-transition, 0.2s ease all);
+    -moz-transition: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-moz-transition, 0.2s ease all);
+    -webkit-transition: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-webkit-transition, 0.2s ease all);
   }
 
-  #input-container[input-style="simple-bar-input"] #input-tag:focus ~ #input-label, 
-  #input-container[input-style="simple-bar-input"] #input-tag[status="valid"] ~ #input-label 		{
-    top:-20px;
-    font-size:14px;
-    color:#5264AE;
+  #input-container[input-style="simple-bar-input"] #input-tag:focus ~ #input-label {
+    top: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-focus-input-label-top,-20px);
+    font-size: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-focus-input-label-font-size,14px);
+    color: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-focus-input-label-color, var(--simple-bar-input-color));
+  }
+
+  #input-container[input-style="simple-bar-input"] #input-tag[status="valid"] ~ #input-label {
+    top: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-status-valid-input-label ,-20px);
+    font-size: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-status-valid-input-label ,14px);
+    color: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-status-valid-input-label, var(--simple-bar-input-color));
   }
 
   #input-container[input-style="simple-bar-input"] #span-bar { 
-    position:relative; 
-    display:block; 
-    width:300px;
+    position: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-position, relative);
+    display: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-display, block);
   }
 
-  #input-container[input-style="simple-bar-input"] #span-bar:before, #span-bar:after 	{
-    content:'';
-    height:2px; 
-    width:0;
-    bottom:1px; 
-    position:absolute;
-    background:#5264AE; 
-    transition:0.2s ease all; 
-    -moz-transition:0.2s ease all; 
-    -webkit-transition:0.2s ease all;
+  #input-container[input-style="simple-bar-input"] #span-bar:before{
+    content: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-before-content, '');
+    height: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-before-height, 2px); 
+    width: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-before-width, 0);
+    bottom: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-before-bottom, 1px); 
+    position: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-before-position, absolute);
+    background: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-before-background, var(--simple-bar-input-bar-color)); 
+    left: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-before-left, 50%);
+    transition: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-before-transition, 0.2s ease all);
+    -moz-transition: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-before-moz-transition, 0.2s ease all); 
+    -webkit-transition: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-before-webkit-transition, 0.2s ease all);
   }
-  #input-container[input-style="simple-bar-input"] #span-bar:before {
-    left:50%;
-  }
+
   #input-container[input-style="simple-bar-input"] #span-bar:after {
-    right:50%; 
+    content: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-after-content, '');
+    height: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-after-height, 2px); 
+    width: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-after-width, 0);
+    bottom: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-after-bottom, 1px); 
+    position: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-after-position, absolute);
+    background-color: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-after-background-color, var(--simple-bar-input-bar-color)); 
+    right: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-after-right, 50%);
+    transition: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-after-transition, 0.2s ease all);
+    -moz-transition: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-after-moz-transition, 0.2s ease all); 
+    -webkit-transition: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-span-bar-after-webkit-transition, 0.2s ease all);
   }
 
-  #input-container[input-style="simple-bar-input"] #input-tag:focus ~ #span-bar:before, #input-tag:focus ~ #span-bar:after {
-    width:50%;
+  #input-container[input-style="simple-bar-input"] #input-tag:focus ~ #span-bar:before{
+    width: var(--sophos-chimera-input-input-container-input-style-simple-bar-input--input-tag-focus-span-bar-before-wdith, 50%);
+  }
+
+
+  #input-container[input-style="simple-bar-input"] #input-tag:focus ~ #span-bar:after {
+    width: var(--sophos-chimera-input-input-container-input-style-simple-bar-input--input-tag-focus-span-bar-after-wdith, 50%);
   }
 
   #input-container[input-style="simple-bar-input"] #span-highlight {
-    position:absolute;
-    height:60%; 
-    width:100px; 
-    top:25%; 
-    left:0;
-    pointer-events:none;
-    opacity:0.5;
+    position: var(--sophos-chimera-input-input-container-input-syle-simple-bar-input-span-highlight-position, absolute);
+    height: var(--sophos-chimera-input-input-container-input-syle-simple-bar-input-span-highlight-height, 60%);
+    width: var(--sophos-chimera-input-input-container-input-syle-simple-bar-input-span-highlight-width, 100px);
+    top: var(--sophos-chimera-input-input-container-input-syle-simple-bar-input-span-highlight-top, 25%); 
+    left: var(--sophos-chimera-input-input-container-input-syle-simple-bar-input-span-highlight-left, 0);
+    pointer-events: var(--sophos-chimera-input-input-container-input-syle-simple-bar-input-span-highlight-pointer-events, none);
+    opacity: var(--sophos-chimera-input-input-container-input-syle-simple-bar-input-span-highlight-opacity, 0.5);
   }
 
   #input-container[input-style="simple-bar-input"] #input-tag:focus ~ #span-highlight {
-    -webkit-animation:inputHighlighter 0.3s ease;
-    -moz-animation:inputHighlighter 0.3s ease;
-    animation:inputHighlighter 0.3s ease;
+    -webkit-animation: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-focus-span-highlight-webkit-animation, inputHighlighter 0.3s ease);
+    -moz-animation: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-focus-span-highlight-moz-animation, inputHighlighter 0.3s ease);
+    animation: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-focus-span-highlight-animation, inputHighlighter 0.3s ease);
   }
 
   @-webkit-keyframes inputHighlighter {
-    from { background:#5264AE; }
+    from { background: var(--simple-bar-input-color); }
     to 	{ width:0; background:transparent; }
   }
   @-moz-keyframes inputHighlighter {
-    from { background:#5264AE; }
+    from { background: var(--simple-bar-input-color); }
     to 	{ width:0; background:transparent; }
   }
   @keyframes inputHighlighter {
-    from { background:#5264AE; }
+    from { background: var(--simple-bar-input-color); }
     to 	{ width:0; background:transparent; }
   }
 `;

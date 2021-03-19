@@ -9,7 +9,7 @@ export class SophosChimeraInput extends LitElement {
     */
   constructor() {
     super();
-    this.styleOfInput = 'rounded-mobile-input';
+    this.styleOfInput = 'simple-bar-input';
     this.value = '';
     this.isRequired = false;
     this.label = 'Put your name here';
@@ -38,6 +38,7 @@ export class SophosChimeraInput extends LitElement {
   _getInputValue(e) {
     this.value = e.target.value;
     this.validateValue();
+    this.dispatchEvent(new CustomEvent('sophos-input-changed', {detail : { value : this.value}}))
   }
 
   validateValue() {
@@ -65,7 +66,9 @@ export class SophosChimeraInput extends LitElement {
           @input="${this._getInputValue}">
           <span id="span-highlight"></span>
           <span id="span-bar"></span>
-          <label id="input-label">${this.label}</label>
+          <label 
+          id="input-label"
+          input-style="${this.styleOfInput}">${this.label}</label>
         ` : html``}
         ${this.styleOfInput === 'rounded-mobile-input' ? html`
           <input 
@@ -74,7 +77,9 @@ export class SophosChimeraInput extends LitElement {
           ?required="${this.isRequired}"
           @input="${this._getInputValue}"
           value="${this.value}">
-          <label id="input-label">${this.label}</label>
+          <label 
+          id="input-label"
+          input-style="${this.styleOfInput}">${this.label}</label>
         ` : html``}
         </div>
       </div>
