@@ -10,8 +10,14 @@ export class SophosChimeraInput extends LitElement {
   constructor() {
     super();
     this.styleOfInput = '';
+    this.max = 0;
+    this.maxLength = 0;
+    this.min = 0;
+    this.minLength = 0;
+    this.placeholder = ''
     this.value = '';
     this.isRequired = false;
+    this.isDisabled = false;
     this.label = '';
     this.pattern = '';
     this._inputStatus = '';
@@ -23,8 +29,13 @@ export class SophosChimeraInput extends LitElement {
   static get properties() {
     return {
       styleOfInput : { type : String},
+      max : {type : Number},
+      maxLength : {type : Number},
+      min : {type : Number},
+      minLength : {type : Number},
       value : { type : String},
       isRequired : { type : Boolean},
+      isdisabled : { type : Boolean},
       label : { type : String},
       pattern : {type : String},
       _inputStatus : { type : String}
@@ -45,10 +56,30 @@ export class SophosChimeraInput extends LitElement {
     const validator = this.pattern !== '' ? new RegExp(this.pattern) : new RegExp('([^\s])');
     if(this.value !== '' && validator.test(this.value)){
       this._inputStatus = 'valid';
+      this.dispatchEvent('valid-value')
     } else {
       this._inputStatus = '';
+      this.dispatchEvent('invalid-value')
     };
   };
+
+  createInputTag(){
+    return html`
+    <input 
+          id="input-tag"
+          status="${this._inputStatus}"
+          max="${this.max}"
+          maxlength="${this.maxLength}"
+          min="${this.min}"
+          minlength="${this.minLength}"
+          placeholder="${this.placeholder}"
+          value="${this.value}"
+          ?disabled="${this.isDisabled}"
+          ?required="${this.isRequired}"
+          @input="${this._getInputValue}">
+          
+          `;
+  }
 
   /*Input status property sets style rule for valid or invalid */
   render() {
@@ -58,12 +89,7 @@ export class SophosChimeraInput extends LitElement {
         id="input-container"
         input-style="${this.styleOfInput}">
         ${this.styleOfInput === 'simple-bar-input' ? html`
-          <input 
-          id="input-tag"
-          status="${this._inputStatus}"
-          value="${this.value}"
-          ?required="${this.isRequired}"
-          @input="${this._getInputValue}">
+          ${this.createInputTag()}
           <span id="span-highlight"></span>
           <span id="span-bar"></span>
           <label 
@@ -71,12 +97,7 @@ export class SophosChimeraInput extends LitElement {
           input-style="${this.styleOfInput}">${this.label}</label>
         ` : html``}
         ${this.styleOfInput === 'rounded-mobile-input' ? html`
-          <input 
-          id="input-tag"
-          status=${this._inputStatus}
-          ?required="${this.isRequired}"
-          @input="${this._getInputValue}"
-          value="${this.value}">
+          ${this.createInputTag()}
           <label 
           id="input-label"
           input-style="${this.styleOfInput}">${this.label}</label>
@@ -86,12 +107,7 @@ export class SophosChimeraInput extends LitElement {
           id="input-label"
           input-style="${this.styleOfInput}">${this.label}
           </label>
-        <input 
-          id="input-tag"
-          status=${this._inputStatus}
-          ?required="${this.isRequired}"
-          @input="${this._getInputValue}"
-          value="${this.value}">
+          ${this.createInputTag()}
         ` : html``}
         </div>
       </div>
