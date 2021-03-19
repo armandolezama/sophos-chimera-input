@@ -12,7 +12,7 @@ export class SophosChimeraInput extends LitElement {
     this.styleOfInput = '';
     this.value = '';
     this.isRequired = false;
-    this.label = 'Put your name here';
+    this.label = '';
     this.pattern = '';
     this._inputStatus = '';
   };

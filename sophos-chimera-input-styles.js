@@ -19,19 +19,7 @@ export default css`
     flex-direction: column;
   }
 
-  #input-container[input-style] {
-    display: flex;
-    flex-direction: column;
-  }
-
   #input-container[input-style="basic"] #input-tag{
-    border-radius: 15px;
-    padding: 8px;
-    border: none;
-    box-shadow: 2px 2px 2px 2px #8F9B16;
-  }
-
-  #input-container[input-style] #input-tag{
     border-radius: 15px;
     padding: 8px;
     border: none;
@@ -47,21 +35,7 @@ export default css`
     box-shadow: 2px 2px 2px 2px #8F9B16;
   }
 
-  #input-container[input-style] #input-tag:focus{
-    background-color: #ECF3A4;
-    outline: none;
-    border-radius: 15px;
-    padding: 8px;
-    border: none;
-    box-shadow: 2px 2px 2px 2px #8F9B16;
-  }
-
   #input-container[input-style="basic"] #input-label{
-    border-radius: 15px;
-    padding: 8px;
-  }
-
-  #input-container[input-style] #input-label{
     border-radius: 15px;
     padding: 8px;
   }
