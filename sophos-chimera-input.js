@@ -9,7 +9,7 @@ export class SophosChimeraInput extends LitElement {
     */
   constructor() {
     super();
-    this.styleOfInput = 'simple-bar-input';
+    this.styleOfInput = '';
     this.value = '';
     this.isRequired = false;
     this.label = 'Put your name here';
@@ -80,6 +80,18 @@ export class SophosChimeraInput extends LitElement {
           <label 
           id="input-label"
           input-style="${this.styleOfInput}">${this.label}</label>
+        ` : html``}
+        ${this.styleOfInput === '' || this.styleOfInput === 'basic' ? html`
+        <label 
+          id="input-label"
+          input-style="${this.styleOfInput}">${this.label}
+          </label>
+        <input 
+          id="input-tag"
+          status=${this._inputStatus}
+          ?required="${this.isRequired}"
+          @input="${this._getInputValue}"
+          value="${this.value}">
         ` : html``}
         </div>
       </div>
