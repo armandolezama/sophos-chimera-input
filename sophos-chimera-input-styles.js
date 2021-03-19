@@ -15,29 +15,29 @@ export default css`
   }
 
   #input-container[input-style="basic"] {
-    display: flex;
-    flex-direction: column;
+    display: var(--sophos-chimera-input-main-container-input-style-basic-display, flex);
+    flex-direction: var(--sophos-chimera-input-main-container-input-style-basic-flex-direction, column);
   }
 
   #input-container[input-style="basic"] #input-tag{
-    border-radius: 15px;
-    padding: 8px;
-    border: none;
-    box-shadow: 2px 2px 2px 2px #8F9B16;
+    border-radius: var(--sophos-chimera-input-input-container-input-style-basic-border-radius, 15px);
+    padding: var(--sophos-chimera-input-input-container-input-style-basic-padding, 8px);
+    border: var(--sophos-chimera-input-input-container-input-style-basic-border, none);
+    box-shadow: var(--sophos-chimera-input-input-container-input-style-basic-box-shadows, 2px 2px 2px 2px #8F9B16);
   }
 
   #input-container[input-style="basic"] #input-tag:focus{
-    background-color: #ECF3A4;
-    outline: none;
-    border-radius: 15px;
-    padding: 8px;
-    border: none;
-    box-shadow: 2px 2px 2px 2px #8F9B16;
+    background-color: var(--sophos-chimera-input-input-container-input-style-basic-input-tag-focus-background-color, #ECF3A4);
+    outline: var(--sophos-chimera-input-input-container-input-style-basic-input-tag-focus-outline, none);
+    border-radius: var(--sophos-chimera-input-input-container-input-style-basic-input-tag-focus-border-radius, 15px);
+    padding: var(--sophos-chimera-input-input-container-input-style-basic-input-tag-focus-padding, 8px);
+    border: var(--sophos-chimera-input-input-container-input-style-basic-input-tag-focus-border, none);
+    box-shadow: var(--sophos-chimera-input-input-container-input-style-basic-input-tag-focus-box-shadow, 2px 2px 2px 2px #8F9B16);
   }
 
   #input-container[input-style="basic"] #input-label{
-    border-radius: 15px;
-    padding: 8px;
+    border-radius: var(--sophos-chimera-input-input-container-input-style-basic-input-label-border-radius, 15px);
+    padding: var(--sophos-chimera-input-input-container-input-style-basic-input-label-padding, 8px);
   }
 
   #input-label[input-style="rounded-mobile-input"] {
