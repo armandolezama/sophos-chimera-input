@@ -14,7 +14,8 @@ export class SophosChimeraInput extends LitElement {
     this.maxLength = 0;
     this.min = 0;
     this.minLength = 0;
-    this.placeholder = ''
+    this.placeholder = '';
+    this.type = '';
     this.value = '';
     this.isRequired = false;
     this.isDisabled = false;
@@ -33,6 +34,8 @@ export class SophosChimeraInput extends LitElement {
       maxLength : {type : Number},
       min : {type : Number},
       minLength : {type : Number},
+      placeholder : {type : String},
+      type : {type : String},
       value : { type : String},
       isRequired : { type : Boolean},
       isdisabled : { type : Boolean},
@@ -50,7 +53,26 @@ export class SophosChimeraInput extends LitElement {
     this.value = e.target.value;
     this.validateValue();
     this.dispatchEvent(new CustomEvent('sophos-input-changed', {detail : { value : this.value}}))
-  }
+  };
+
+  _inputHasChanged(e){
+    this.dispatchEvent(new CustomEvent('sophos-input-changed', {detail : {
+      innerInput : e.target
+    }}));
+  };
+
+  _dispatchFocusEvent() {
+    this.dispatchEvent(new CustomEvent('sophos-input-focus'));
+  };
+
+  _dispatchBlurEvent() {
+    this.dispatchEvent(new CustomEvent('sophos-input-blur'));
+  };
+
+  _dropZoneClicked() {
+    const inputTag = this.shadowRoot.querySelector('#input-tag');
+    inputTag.click();
+  };
 
   validateValue() {
     const validator = this.pattern !== '' ? new RegExp(this.pattern) : new RegExp('([^\s])');
@@ -74,10 +96,13 @@ export class SophosChimeraInput extends LitElement {
           minlength="${this.minLength}"
           placeholder="${this.placeholder}"
           value="${this.value}"
+          .type="${this.type}"
           ?disabled="${this.isDisabled}"
           ?required="${this.isRequired}"
-          @input="${this._getInputValue}">
-          
+          @input="${this._getInputValue}"
+          @change="${this._inputHasChanged}"
+          @focus="${this._dispatchFocusEvent}"
+          @blur="${this._dispatchBlurEvent}">
           `;
   }
 
@@ -105,9 +130,17 @@ export class SophosChimeraInput extends LitElement {
         ${this.styleOfInput === '' || this.styleOfInput === 'basic' ? html`
         <label 
           id="input-label"
-          input-style="${this.styleOfInput}">${this.label}
+          input-style="basic">${this.label}
           </label>
           ${this.createInputTag()}
+        ` : html``}
+        ${this.styleOfInput === 'file-drag-drop-input' ? html`
+        <div 
+        id="drop-zone"
+        @click="${this._dropZoneClicked}">
+          <span id="drop-zone-label">${this.label}</span>
+          ${this.createInputTag()}
+        </div>
         ` : html``}
         </div>
       </div>

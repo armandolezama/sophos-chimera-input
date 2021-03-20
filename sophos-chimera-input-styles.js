@@ -206,4 +206,23 @@ export default css`
     from { background: var(--simple-bar-input-color); }
     to 	{ width:0; background:transparent; }
   }
+
+  #input-container[input-style="file-drag-drop-input"] #drop-zone {
+  max-width: 200px;
+  height: 200px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  color: #cccccc;
+  border: 4px dashed #009578;
+  border-radius: 10px;
+}
+
+#input-container[input-style="file-drag-drop-input"] #input-tag {
+  display: none;
+}
 `;
