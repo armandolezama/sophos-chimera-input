@@ -78,10 +78,10 @@ export class SophosChimeraInput extends LitElement {
     const validator = this.pattern !== '' ? new RegExp(this.pattern) : new RegExp('([^\s])');
     if(this.value !== '' && validator.test(this.value)){
       this._inputStatus = 'valid';
-      this.dispatchEvent('valid-value')
+      this.dispatchEvent('valid-value');
     } else {
       this._inputStatus = '';
-      this.dispatchEvent('invalid-value')
+      this.dispatchEvent('invalid-value');
     };
   };
 

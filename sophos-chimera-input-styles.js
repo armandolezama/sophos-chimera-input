@@ -102,7 +102,7 @@ export default css`
 
   #input-container[input-style="simple-bar-input"] #input-tag {
     font-size: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-font-size, 18px);
-    padding: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-padding, 10px 10px 10px 5px);
+    padding: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-padding, 10px 10px 5px 5px);
     display: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-display, block);
     width: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-width, 300px);
     border: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-border, none);
@@ -115,7 +115,7 @@ export default css`
   #input-container[input-style="simple-bar-input"] #input-tag:focus { outline: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-tag-focus-outline, none);}
 
   #input-container[input-style="simple-bar-input"] #input-label {
-    color: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-color ,var(--simple-bar-input-color));
+    color: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-color, var(--simple-bar-input-color));
     font-size: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-font-size, 18px);
     position: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-position, absolute);
     pointer-events: var(--sophos-chimera-input-input-container-input-style-simple-bar-input-input-label-pointer-events, none);
@@ -208,21 +208,21 @@ export default css`
   }
 
   #input-container[input-style="file-drag-drop-input"] #drop-zone {
-  max-width: 200px;
-  height: 200px;
-  padding: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 20px;
-  cursor: pointer;
-  color: #cccccc;
-  border: 4px dashed #009578;
-  border-radius: 10px;
+  max-width: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, 200px);
+  height: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, 200px);
+  padding: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, 25px);
+  display: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, flex);
+  align-items: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, center);
+  justify-content: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, center);
+  text-align: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, center);
+  font-size: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, 20px);
+  cursor: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, pointer);
+  color: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, #cccccc);
+  border: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, 4px dashed #009578);
+  border-radius: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-drop-zone-, 10px);
 }
 
 #input-container[input-style="file-drag-drop-input"] #input-tag {
-  display: none;
+  display: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-input-tag-display, none);
 }
 `;
