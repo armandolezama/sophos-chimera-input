@@ -49,43 +49,43 @@ export class SophosChimeraInput extends LitElement {
     return styles;
   };
 
-  _getInputValue(e) {
+  _fireInputEvent(e) {
     this.value = e.target.value;
-    this.validateValue();
+    this._validateValue();
     this.dispatchEvent(new CustomEvent('sophos-input-changed', {detail : { value : this.value}}))
   };
 
-  _inputHasChanged(e){
-    this.dispatchEvent(new CustomEvent('sophos-input-changed', {detail : {
+  _fireInputChanged(e){
+    this.dispatchEvent(new CustomEvent('sophos-input-file-changed', {detail : {
       innerInput : e.target
     }}));
   };
 
-  _dispatchFocusEvent() {
+  _fireFocusEvent() {
     this.dispatchEvent(new CustomEvent('sophos-input-focus'));
   };
 
-  _dispatchBlurEvent() {
+  _fireBlurEvent() {
     this.dispatchEvent(new CustomEvent('sophos-input-blur'));
   };
 
-  _dropZoneClicked() {
+  _fireDropZoneClick() {
     const inputTag = this.shadowRoot.querySelector('#input-tag');
     inputTag.click();
   };
 
-  validateValue() {
+  _validateValue() {
     const validator = this.pattern !== '' ? new RegExp(this.pattern) : new RegExp('([^\s])');
     if(this.value !== '' && validator.test(this.value)){
       this._inputStatus = 'valid';
-      this.dispatchEvent('valid-value');
+      this.dispatchEvent(new CustomEvent('sophos-valid-value'));
     } else {
       this._inputStatus = '';
-      this.dispatchEvent('invalid-value');
+      this.dispatchEvent(new CustomEvent('sophos-invalid-value'));
     };
   };
 
-  createInputTag(){
+  _createInputTag(){
     return html`
     <input 
           id="input-tag"
@@ -99,12 +99,12 @@ export class SophosChimeraInput extends LitElement {
           .type="${this.type}"
           ?disabled="${this.isDisabled}"
           ?required="${this.isRequired}"
-          @input="${this._getInputValue}"
-          @change="${this._inputHasChanged}"
-          @focus="${this._dispatchFocusEvent}"
-          @blur="${this._dispatchBlurEvent}">
+          @input="${this._fireInputEvent}"
+          @change="${this._fireInputChanged}"
+          @focus="${this._fireFocusEvent}"
+          @blur="${this._fireBlurEvent}">
           `;
-  }
+  };
 
   /*Input status property sets style rule for valid or invalid */
   render() {
@@ -114,7 +114,7 @@ export class SophosChimeraInput extends LitElement {
         id="input-container"
         input-style="${this.styleOfInput}">
         ${this.styleOfInput === 'simple-bar-input' ? html`
-          ${this.createInputTag()}
+          ${this._createInputTag()}
           <span id="span-highlight"></span>
           <span id="span-bar"></span>
           <label 
@@ -122,7 +122,7 @@ export class SophosChimeraInput extends LitElement {
           input-style="${this.styleOfInput}">${this.label}</label>
         ` : html``}
         ${this.styleOfInput === 'rounded-mobile-input' ? html`
-          ${this.createInputTag()}
+          ${this._createInputTag()}
           <label 
           id="input-label"
           input-style="${this.styleOfInput}">${this.label}</label>
@@ -132,14 +132,14 @@ export class SophosChimeraInput extends LitElement {
           id="input-label"
           input-style="basic">${this.label}
           </label>
-          ${this.createInputTag()}
+          ${this._createInputTag()}
         ` : html``}
         ${this.styleOfInput === 'file-drag-drop-input' ? html`
         <div 
         id="drop-zone"
-        @click="${this._dropZoneClicked}">
+        @click="${this._fireDropZoneClick}">
           <span id="drop-zone-label">${this.label}</span>
-          ${this.createInputTag()}
+          ${this._createInputTag()}
         </div>
         ` : html``}
         </div>
