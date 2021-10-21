@@ -21,7 +21,10 @@ export class SophosChimeraInput extends LitElement {
     this.isDisabled = false;
     this.label = '';
     this.pattern = '';
+    this.showMessage = false;
+    this.emptyMessage = '';
     this._inputStatus = '';
+    this._whiteSpacePattern = '';
   };
 
   /**
@@ -29,19 +32,20 @@ export class SophosChimeraInput extends LitElement {
     */
   static get properties() {
     return {
-      styleOfInput : { type : String},
-      max : {type : Number},
-      maxLength : {type : Number},
-      min : {type : Number},
-      minLength : {type : Number},
-      placeholder : {type : String},
-      type : {type : String},
-      value : { type : String},
-      isRequired : { type : Boolean},
-      isdisabled : { type : Boolean},
-      label : { type : String},
-      pattern : {type : String},
-      _inputStatus : { type : String}
+      styleOfInput : { type : String },
+      max : {type : Number },
+      maxLength : {type : Number },
+      min : {type : Number },
+      minLength : {type : Number },
+      placeholder : {type : String },
+      type : {type : String },
+      value : { type : String },
+      isRequired : { type : Boolean },
+      isdisabled : { type : Boolean },
+      label : { type : String },
+      pattern : {type : String },
+      _inputStatus : { type : String },
+      _whiteSpacePattern : { type : String }
     };
   };
 
@@ -55,7 +59,7 @@ export class SophosChimeraInput extends LitElement {
     this.dispatchEvent(new CustomEvent('sophos-input-changed', {detail : { value : this.value}}))
   };
 
-  _fireInputChanged(e){
+  _fireInputChangeEvent(e){
     this.dispatchEvent(new CustomEvent('sophos-input-file-changed', {detail : {
       innerInput : e.target
     }}));
@@ -87,61 +91,82 @@ export class SophosChimeraInput extends LitElement {
 
   _createInputTag(){
     return html`
-    <input 
-          id="input-tag"
-          status="${this._inputStatus}"
-          max="${this.max}"
-          maxlength="${this.maxLength}"
-          min="${this.min}"
-          minlength="${this.minLength}"
-          placeholder="${this.placeholder}"
-          value="${this.value}"
-          .type="${this.type}"
-          ?disabled="${this.isDisabled}"
-          ?required="${this.isRequired}"
-          @input="${this._fireInputEvent}"
-          @change="${this._fireInputChanged}"
-          @focus="${this._fireFocusEvent}"
-          @blur="${this._fireBlurEvent}">
-          `;
+      <input 
+            id="input-tag"
+            status="${this._inputStatus}"
+            max="${this.max}"
+            maxlength="${this.maxLength}"
+            min="${this.min}"
+            minlength="${this.minLength}"
+            placeholder="${this.placeholder}"
+            value="${this.value}"
+            .type="${this.type}"
+            ?disabled="${this.isDisabled}"
+            ?required="${this.isRequired}"
+            @input="${this._fireInputEvent}"
+            @change="${this._fireInputChangeEvent}"
+            @focus="${this._fireFocusEvent}"
+            @blur="${this._fireBlurEvent}">
+    `;
   };
 
-  /*Input status property sets style rule for valid or invalid */
+   /**
+    * Input status property sets style rule for valid or invalid 
+    */
   render() {
     return html`
       <div id="main-container">
         <div 
         id="input-container"
         input-style="${this.styleOfInput}">
-        ${this.styleOfInput === 'simple-bar-input' ? html`
-          ${this._createInputTag()}
-          <span id="span-highlight"></span>
-          <span id="span-bar"></span>
-          <label 
-          id="input-label"
-          input-style="${this.styleOfInput}">${this.label}</label>
-        ` : html``}
-        ${this.styleOfInput === 'rounded-mobile-input' ? html`
-          ${this._createInputTag()}
-          <label 
-          id="input-label"
-          input-style="${this.styleOfInput}">${this.label}</label>
-        ` : html``}
-        ${this.styleOfInput === '' || this.styleOfInput === 'basic' ? html`
-        <label 
-          id="input-label"
-          input-style="basic">${this.label}
-          </label>
-          ${this._createInputTag()}
-        ` : html``}
-        ${this.styleOfInput === 'file-drag-drop-input' ? html`
-        <div 
-        id="drop-zone"
-        @click="${this._fireDropZoneClick}">
-          <span id="drop-zone-label">${this.label}</span>
-          ${this._createInputTag()}
+        ${[
+          this.styleOfInput === 'simple-bar-input' && 
+            html`
+              ${this._createInputTag()}
+              <span id="span-highlight"></span>
+              <span id="span-bar"></span>
+              <label 
+              id="input-label"
+              input-style="${this.styleOfInput}">
+                ${this.label}
+              </label>
+            `,
+          this.styleOfInput === 'rounded-mobile-input' && 
+            html`
+              ${this._createInputTag()}
+              <label 
+              id="input-label"
+              input-style="${this.styleOfInput}">
+                ${this.label}
+              </label>
+            `,
+          (this.styleOfInput === '' || this.styleOfInput === 'basic') && 
+            html`
+              <label 
+              id="input-label"
+              input-style="basic">
+                ${this.label}
+              </label>
+              ${this._createInputTag()}
+            `,
+          this.styleOfInput === 'file-drag-drop-input' && 
+            html`
+              <div 
+              id="drop-zone"
+              @click="${this._fireDropZoneClick}">
+                <span id="drop-zone-label">${this.label}</span>
+                ${this._createInputTag()}
+              </div>
+            `
+          ].filter(template => template).map( template => template)} 
         </div>
-        ` : html``}
+        <div
+        id="input-message-container"
+        ?hidden=${!this.showMessage}>
+          <div 
+          id="input-empty-message">
+            ${this.emptyMessage}
+          </div>
         </div>
       </div>
     `;

@@ -9,6 +9,7 @@ export default css`
 
   #main-container {
     display: var(--sophos-chimera-input-main-container-display, flex);
+    flex-direction: var(--sophos-chimera-input-main-container-flex-direction, column);
     justify-content: var(--sophos-chimera-input-main-container-justify-content, space-evenly);
     align-items: var(--sophos-chimera-input-main-container-align-items, center);
     height: var(--sophos-chimera-input-main-container-height, 200px);
@@ -224,5 +225,13 @@ export default css`
 
 #input-container[input-style="file-drag-drop-input"] #input-tag {
   display: var(--sophos-chimera-input-input-container-input-style-file-drag-drop-input-input-tag-display, none);
+}
+
+#input-empty-message {
+  color: #cc0033;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
 }
 `;
