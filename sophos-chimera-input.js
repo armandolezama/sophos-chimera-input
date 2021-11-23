@@ -44,6 +44,8 @@ export class SophosChimeraInput extends LitElement {
       isdisabled : { type : Boolean },
       label : { type : String },
       pattern : {type : String },
+      showMessage : { type: Boolean },
+      emptyMessage : { type: String },
       _inputStatus : { type : String },
       _whiteSpacePattern : { type : String }
     };
@@ -158,7 +160,7 @@ export class SophosChimeraInput extends LitElement {
                 ${this._createInputTag()}
               </div>
             `
-          ].filter(template => template).map( template => template)} 
+          ].filter(template => template)} 
         </div>
         <div
         id="input-message-container"
