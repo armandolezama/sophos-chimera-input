@@ -1,6 +1,6 @@
 {
   "name": "sophos-chimera-input",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "",
   "main": "sophos-chimera-input.js",
   "module": "sophos-chimera-input.js",

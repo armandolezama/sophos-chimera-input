@@ -22,7 +22,7 @@ export class SophosChimeraInput extends LitElement {
     this.label = '';
     this.pattern = '';
     this.showMessage = false;
-    this.emptyMessage = '';
+    this.inputMessage = '';
     this._inputStatus = '';
     this._whiteSpacePattern = '';
   }
@@ -45,7 +45,7 @@ export class SophosChimeraInput extends LitElement {
       label : { type : String },
       pattern : {type : String },
       showMessage : { type: Boolean },
-      emptyMessage : { type: String },
+      inputMessage : { type: String },
       _inputStatus : { type : String },
       _whiteSpacePattern : { type : String }
     };
@@ -81,7 +81,7 @@ export class SophosChimeraInput extends LitElement {
   }
 
   _validateValue () {
-    const validator = this.pattern !== '' ? new RegExp(this.pattern) : new RegExp('([^s])');
+    const validator = this.pattern !== '' ? new RegExp(this.pattern) : new RegExp('([^s]*)');
     if(this.value !== '' && validator.test(this.value)){
       this._inputStatus = 'valid';
       this.dispatchEvent(new CustomEvent('sophos-valid-value'));
@@ -166,8 +166,8 @@ export class SophosChimeraInput extends LitElement {
         id="input-message-container"
         ?hidden=${!this.showMessage}>
           <div 
-          id="input-empty-message">
-            ${this.emptyMessage}
+          id="input-message">
+            ${this.inputMessage}
           </div>
         </div>
       </div>
